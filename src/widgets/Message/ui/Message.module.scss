@@ -1,0 +1,10 @@
+.message {
+	color: var(--success);
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.error {
+	@extend .message;
+	color: var(--danger);
+}

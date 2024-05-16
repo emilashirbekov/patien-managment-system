@@ -1,0 +1,54 @@
+.button {
+	border-color: #0000;
+	border-radius: 8px;
+	color: #fff;
+	font-size: 14px;
+	margin: 0px 4px 0 0;
+
+	&__primary {
+		@extend .button;
+		background-color: var(--primary);
+		transition: all 0.3s ease;
+		&:hover {
+			background-color: var(--light-primary);
+		}
+	}
+
+	&__success {
+		@extend .button;
+		background-color: var(--success);
+		border: 1px solid (var(--success));
+		transition: all 0.3s ease;
+		&:hover {
+			background-color: var(--light-success);
+		}
+	}
+	&__light {
+		@extend .button;
+		background-color: var(--light);
+		transition: all 0.3s ease;
+		&:hover {
+			background-color: var(--dark-light);
+		}
+	}
+	&__aqua {
+		@extend .button;
+		background-color: var(--aqua);
+		transition: all 0.3s ease;
+		&:hover {
+			background-color: var(--aqua-blue);
+		}
+	}
+
+	&__sm {
+		padding: 4px 8px;
+	}
+
+	&__md {
+		padding: 6px 12px;
+	}
+
+	&__lg {
+		padding: 8px 16px;
+	}
+}

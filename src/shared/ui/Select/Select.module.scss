@@ -1,0 +1,22 @@
+.select {
+	position: relative;
+
+	& select {
+		padding: 5px 15px;
+		border-radius: 10px;
+		border: 2px solid rgba(46, 55, 164, 0.1019607843);
+	}
+}
+
+.label {
+	background: #fff;
+	color: #333448;
+	font-size: 12px;
+	font-weight: 500;
+	left: 10px;
+	margin-bottom: 0;
+	padding: 0 5px;
+	position: absolute;
+	top: -10px;
+	z-index: 1;
+}

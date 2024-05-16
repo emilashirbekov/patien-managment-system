@@ -1,0 +1,88 @@
+.signIn__form {
+	background: #fff;
+	border-radius: 30px;
+	padding: 50px;
+	height: fit-content;
+	width: 540px;
+	@media screen and (max-width: 425px) {
+		padding: 20px;
+	}
+
+	& h2 {
+		font-size: 26px;
+		font-weight: 600;
+		margin-bottom: 40px;
+		@media screen and (max-width: 500px) {
+			margin-bottom: 20px;
+		}
+	}
+
+	& form {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 40px;
+
+		& input {
+			border: 2px solid #2e37a41a;
+			border-radius: 10px;
+			height: 45px;
+			margin-bottom: 20px;
+			padding: 20px;
+			width: 100%;
+		}
+
+		& button {
+			background: linear-gradient(92.39deg, #4e57cd 1.86%, #2e37a4);
+			border-radius: 12px;
+			font-size: 16px;
+			padding: 10px 15px;
+			color: #f7f7f7;
+			transition: all 0.3s ease;
+
+			& :hover {
+				background: linear-gradient(92.39deg, #424ccf 1.86%, #1f2781);
+			}
+		}
+	}
+
+	&__action {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin-bottom: 40px;
+
+		& p {
+			color: #00d3c7;
+			font-size: 14px;
+			font-weight: 500;
+		}
+	}
+}
+
+.social {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 20px;
+
+	&__account {
+		color: #33344880;
+		font-size: 14px;
+		font-weight: 500;
+		margin-bottom: 0;
+		text-align: left;
+
+		& span {
+			color: #2e37a4;
+		}
+	}
+}
+
+.error {
+	color: var(--danger);
+	font-size: 16px;
+	margin-bottom: 16px;
+}

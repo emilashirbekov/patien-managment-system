@@ -1,0 +1,62 @@
+.input {
+	border: 2px solid #2e37a41a;
+	border-radius: 10px;
+	height: 45px;
+	margin-bottom: 20px;
+	padding: 20px;
+	width: 100%;
+}
+
+.label {
+	background: #fff;
+	color: #333448;
+	font-size: 12px;
+	font-weight: 500;
+	left: 10px;
+	margin-bottom: 0;
+	padding: 0 5px;
+	position: absolute;
+	top: -10px;
+	z-index: 1;
+}
+
+.check {
+	margin: 0 !important;
+	height: auto !important;
+	width: fit-content !important;
+	margin-right: 20px !important;
+	cursor: pointer;
+}
+
+.radio {
+	cursor: pointer;
+	height: 17px;
+	margin-right: 5px;
+	margin-top: 0;
+	width: 17px;
+}
+
+.error {
+	margin-bottom: 20px;
+	color: var(--danger);
+}
+
+input[type='file']::file-selector-button {
+	border-radius: 4px;
+	padding: 0 16px;
+	height: 40px;
+	cursor: pointer;
+	background-color: white;
+	border: 1px solid rgba(0, 0, 0, 0.16);
+	box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+	margin-right: 16px;
+	transition: background-color 200ms;
+}
+
+input[type='file']::file-selector-button:hover {
+	background-color: #f3f4f6;
+}
+
+input[type='file']::file-selector-button:active {
+	background-color: #e5e7eb;
+}

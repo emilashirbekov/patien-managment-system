@@ -1,0 +1,85 @@
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: #fff;
+	box-shadow: 0 0 14px #cccccc40;
+	height: 70px;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 1039;
+
+	&__left {
+		float: left;
+		display: flex;
+		gap: 30px;
+		height: 70px;
+		padding: 0 20px;
+		position: relative;
+		text-align: center;
+		width: 260px;
+		z-index: 1;
+		align-items: center;
+
+		&__logo {
+			align-items: center;
+			display: flex;
+			height: 70px;
+			justify-content: center;
+
+			& span {
+				color: #2e37a4;
+				font-size: 20px;
+				font-weight: 500;
+				margin-left: 10px;
+			}
+		}
+	}
+	&__burger {
+		color: #000;
+		float: left;
+		font-size: 24px;
+		line-height: 70px;
+		padding: 0 10px;
+		@media screen and (max-width: 1025px) {
+			order: -1;
+		}
+		@media screen and (min-width: 1025px) {
+			display: none;
+		}
+	}
+
+	&__right {
+		display: flex;
+		align-items: center;
+		justify-content: end;
+		gap: 30px;
+		padding: 10px 20px;
+		color: #2e37a4;
+		@media screen and (max-width: 1024px) {
+			display: none;
+		}
+
+		&__profile {
+			display: flex;
+			gap: 20px;
+			cursor: pointer;
+			& a {
+				display: flex;
+				gap: 20px;
+			}
+			& img {
+				border-radius: 50%;
+			}
+		}
+	}
+
+	&__vertical {
+		margin-right: 20px;
+		@media screen and (min-width: 1024px) {
+			display: none;
+		}
+	}
+}
