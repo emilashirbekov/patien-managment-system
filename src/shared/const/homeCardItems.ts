@@ -1,7 +1,6 @@
 import Appointments from '@/shared/assets/appointemnts.svg'
 import Profile from '@/shared/assets/profile.svg'
 import Operations from '@/shared/assets/operations.svg'
-import Earnings from '@/shared/assets/earnings.svg'
 
 interface homeCardsProps {
 	id: string

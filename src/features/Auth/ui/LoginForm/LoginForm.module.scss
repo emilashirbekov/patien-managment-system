@@ -1,9 +1,9 @@
 .signIn__form {
+	width: auto;
 	background: #fff;
 	border-radius: 30px;
 	padding: 50px;
 	height: fit-content;
-	width: 540px;
 	@media screen and (max-width: 425px) {
 		padding: 20px;
 	}
@@ -18,10 +18,10 @@
 	}
 
 	& form {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 40px;
-
+		& .inputs {
+			display: flex;
+			gap: 40px;
+		}
 		& input {
 			border: 2px solid #2e37a41a;
 			border-radius: 10px;
@@ -32,6 +32,7 @@
 		}
 
 		& button {
+			margin-bottom: 20px;
 			background: linear-gradient(92.39deg, #4e57cd 1.86%, #2e37a4);
 			border-radius: 12px;
 			font-size: 16px;
@@ -83,6 +84,6 @@
 
 .error {
 	color: var(--danger);
-	font-size: 16px;
+	font-size: 14px;
 	margin-bottom: 16px;
 }

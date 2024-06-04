@@ -51,18 +51,13 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
 	const scssLoader = {
 		test: /\.s[ac]ss$/i,
 		use: [
-			// Creates `style` nodes from JS strings
 			isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-			// Translates CSS into CommonJS
 			cssLoaderWithModules,
-			// Compiles Sass to CSS
 			'sass-loader',
 		],
 	}
 
 	const tsLoader = {
-		// ts-loader умеет работать с JSX
-		// Если б мы не использовали тайпскрипт: нужен был бы babel-loader
 		exclude: /node_modules/,
 		test: /\.tsx?$/,
 		use: [

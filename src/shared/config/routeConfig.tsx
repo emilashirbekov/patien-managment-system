@@ -1,70 +1,45 @@
-import DoctorActions from '@/pages/Doctors/ui/AddDoctor/DoctorActions'
-import Doctors from '@/pages/Doctors/Doctors'
-import { Login } from '@/pages/Login'
-import { RouteProps } from 'react-router-dom'
-import { Patients } from '@/pages/Patients'
-import { Main } from '@/pages/Main/ui/Home'
-import { Home } from '@/pages/web/Home/Home'
-
 export enum AppRoutes {
-	MAIN = 'Main',
+	Dashboard = 'admin',
+
 	DOCTORS = 'Doctors',
 	ADD_DOCTOR = 'add_doctor',
+	CHANGE_DOCTOR = 'change_doctor',
+
 	PATIENTS = 'Patients',
+	ADD_PATIENT = 'add_patient',
+	CHANGE_PATIENT = 'change_patient',
+	PATIENT_INFO = 'patient_info',
+
+	DEPARTMENTS = 'Departments',
 	BOOK = 'Book',
-	BEDS = 'Beds',
 	LOGIN = 'Login',
+	REGISTER = 'Register',
 	NOT_FOUND = 'not_found',
 
 	HOME = 'home',
+	APPOINTMENT = 'Appointment',
+	PERSONAL_ACCOUNT = 'PersonalAccount',
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
-	[AppRoutes.MAIN]: '/',
-	[AppRoutes.DOCTORS]: '/doctors',
-	[AppRoutes.ADD_DOCTOR]: '/add_doctor',
-	[AppRoutes.PATIENTS]: '/patients',
-	[AppRoutes.BOOK]: '/book',
-	[AppRoutes.BEDS]: '/beds',
+	[AppRoutes.Dashboard]: '/admin',
+
+	[AppRoutes.DOCTORS]: '/admin/doctors',
+	[AppRoutes.ADD_DOCTOR]: '/admin/add_doctor',
+	[AppRoutes.CHANGE_DOCTOR]: '/admin/change_doctor',
+
+	[AppRoutes.ADD_PATIENT]: '/admin/add_patient',
+	[AppRoutes.CHANGE_PATIENT]: '/admin/change_patient',
+	[AppRoutes.PATIENT_INFO]: '/patient_info',
+	[AppRoutes.PATIENTS]: '/admin/patients',
+
+	[AppRoutes.DEPARTMENTS]: '/admin/Departments',
+	[AppRoutes.BOOK]: '/admin/book',
 	[AppRoutes.LOGIN]: '/login',
+	[AppRoutes.REGISTER]: '/register',
 	[AppRoutes.NOT_FOUND]: '*',
-	[AppRoutes.HOME]: '/home',
-}
 
-export const routeConfig: Record<AppRoutes, RouteProps> = {
-	[AppRoutes.MAIN]: {
-		path: RoutePath.Main,
-		element: <Main />,
-	},
-	[AppRoutes.DOCTORS]: {
-		path: RoutePath.Doctors,
-		element: <Doctors />,
-	},
-	[AppRoutes.ADD_DOCTOR]: {
-		path: RoutePath.add_doctor,
-		element: <DoctorActions />,
-	},
-	[AppRoutes.PATIENTS]: {
-		path: RoutePath.Patients,
-		element: <Patients />,
-	},
-	[AppRoutes.BOOK]: {
-		path: RoutePath.Book,
-	},
-	[AppRoutes.BEDS]: {
-		path: RoutePath.Beds,
-	},
-	[AppRoutes.LOGIN]: {
-		path: RoutePath.Login,
-		element: <Login />,
-	},
-
-	[AppRoutes.NOT_FOUND]: {
-		path: RoutePath.not_found,
-	},
-
-	[AppRoutes.HOME]: {
-		path: RoutePath.home,
-		element: <Home />,
-	},
+	[AppRoutes.HOME]: '/',
+	[AppRoutes.APPOINTMENT]: '/appointment',
+	[AppRoutes.PERSONAL_ACCOUNT]: '/personal_account',
 }

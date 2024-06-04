@@ -1,0 +1,55 @@
+.choose {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+	justify-items: center;
+	margin: 64px 0;
+
+	& img {
+		margin-bottom: 30px;
+	}
+
+	&__left {
+		& h4 {
+			font-size: 40px;
+			font-weight: 700;
+			letter-spacing: 0.7px;
+		}
+
+		& p {
+			color: #4d4b4b;
+			font-size: 18px;
+			letter-spacing: 0.8px;
+			line-height: 1.8rem;
+			margin: 32px 0;
+		}
+
+		& ul li {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-size: 22px;
+			font-weight: 700;
+			letter-spacing: 0.7px;
+			margin: 28px 0;
+		}
+	}
+
+	& a {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+		width: min-content;
+		border: 1px solid #0000;
+		border-radius: 28px;
+		color: #fff;
+		cursor: pointer;
+		letter-spacing: 0.8px;
+		outline: #0000;
+		padding: 14px 20px;
+		transition: all 0.4s ease;
+		background-color: var(--primary);
+		&:hover {
+			background-color: var(--light-primary);
+		}
+	}
+}

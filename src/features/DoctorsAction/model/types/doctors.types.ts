@@ -1,11 +1,13 @@
-export interface Doctors {
-	id?: string
+export interface Doctors extends ProfileData {
+	username: string
 	first_name: string
 	last_name: string
-	middle_name: string
-	date_of_birth: string
-	gender: string
+	password: string
+	password2: string
+}
+
+interface ProfileData {
+	department: string
 	address: string
-	avatar: string
-	specialization: string
+	mobile: string
 }
