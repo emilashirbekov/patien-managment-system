@@ -19,41 +19,39 @@ interface PatientFormProps {
 	errors: FieldErrors<PatientsTypes>
 	reset: any
 	watch: any
-	departments: any
 }
 
 export const ChangePatientForm: FC<PatientFormProps> = props => {
-	const { register, handleSubmit, errors, departments, reset } = props
+	const { register, handleSubmit, errors, reset } = props
 	const { id } = useParams()
 	const [updatePatient] = useUpdatePatientMutation()
 
-	const onSubmit: SubmitHandler<any> = (formValue, id) => {
+	const onSubmit: SubmitHandler<any> = formValue => {
 		const user_data = {
 			username: formValue.username,
 			first_name: formValue.first_name,
 			last_name: formValue.last_name,
 			password: formValue.password,
 			password2: formValue.password2,
+			Patient: {
+				department: formValue.age,
+				address: formValue.address,
+				mobile: formValue.mobile,
+			},
 		}
-		const profile_data = {
-			department: formValue.age,
-			address: formValue.address,
-			mobile: formValue.mobile,
-		}
-		const registrationData = { user_data, profile_data }
+		const registrationData = user_data
+		console.log(registrationData)
+
 		//@ts-ignore
-		// updatePatient(id, registrationData)
-		// reset()
-		console.log(registrationData, id)
+		updatePatient({ id, patients: registrationData })
+		reset()
 	}
 
 	return (
 		<>
 			<form
-				onSubmit={handleSubmit((data, id) => {
-					onSubmit(data, id)
-					reset()
-				})}
+				//@ts-ignore
+				onSubmit={handleSubmit(data => onSubmit(data, id))}
 			>
 				<div className={cls.col_1}>
 					<span>

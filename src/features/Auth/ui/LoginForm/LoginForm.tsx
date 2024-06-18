@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import cls from './LoginForm.module.scss'
 import { Button } from '@/shared/ui/Button/Button'
 import {
@@ -12,27 +12,89 @@ import { Link, useLocation } from 'react-router-dom'
 import { RoutePath } from '@/shared/config/routeConfig'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { SerializedError } from '@reduxjs/toolkit'
-import Cookies from 'js-cookie'
+import { Message } from '@/widgets/Dashboard/Message/ui/Message'
 
 interface LoginFormProps {
 	onSubmit: (form: LoginSchema) => void
 	handleSubmit: UseFormHandleSubmit<LoginSchema, FieldValues>
 	register: UseFormRegister<LoginSchema>
 	errors: FieldErrors<LoginSchema>
+	success: any
 	watch: any
+	authType: string
+	userType: string
+	handleChangeUserType: (e: ChangeEvent<HTMLInputElement>) => void
 	error: FetchBaseQueryError | SerializedError
 }
 
 export const LoginForm: React.FC<LoginFormProps> = props => {
-	const { onSubmit, handleSubmit, register, errors, watch } = props
+	const {
+		onSubmit,
+		handleChangeUserType,
+		handleSubmit,
+		register,
+		errors,
+		watch,
+		error,
+		userType,
+		authType,
+		success,
+	} = props
 	const { pathname } = useLocation()
-	Cookies.set(
-		'access_token',
-		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NDk2MzYzLCJpYXQiOjE3MTc0OTI3NjMsImp0aSI6IjYxNjE1MjViODdlZTRhNGM4MTJhYzBmMjcyMWUxN2Y2IiwidXNlcl9pZCI6IjMwMGY0YmFhLTBhMWQtNDJlOS1iOWE1LTIyODMyYWZhZjg4MyJ9.5oVrWnRx9qqHEmjrTd2URknClo1WxzLiDUk1P3VYQqI'
-	)
+
 	return (
 		<div className={cls.signIn__form}>
-			<h2>{pathname === '/register' ? 'Регистрация' : 'Войти'}</h2>
+			<label
+				className={`${cls.custom__radio} ${
+					userType === 'patient' ? cls.checked : ''
+				}`}
+			>
+				<span>Пациент</span>
+				<input
+					id='patient'
+					onChange={handleChangeUserType}
+					type='radio'
+					name='radio'
+					value='patient'
+					defaultChecked
+				/>
+			</label>
+
+			<label
+				className={`${cls.custom__radio} ${
+					userType === 'doctor' ? cls.checked : ''
+				}`}
+			>
+				<span>Врач</span>
+				<input
+					id='doctor'
+					onChange={handleChangeUserType}
+					type='radio'
+					name='radio'
+					value='doctor'
+				/>
+			</label>
+
+			<label
+				className={`${cls.custom__radio} ${
+					userType === 'admin' ? cls.checked : ''
+				}`}
+			>
+				<span>Админ</span>
+				<input
+					id='admin'
+					onChange={handleChangeUserType}
+					type='radio'
+					name='radio'
+					value='admin'
+				/>
+			</label>
+
+			<h2>
+				{pathname === '/register' && authType === 'register'
+					? 'Регистрация'
+					: 'Войти'}
+			</h2>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				{pathname === RoutePath.Register ? (
 					<div className={cls.inputs}>
@@ -184,6 +246,13 @@ export const LoginForm: React.FC<LoginFormProps> = props => {
 						)}
 					</div>
 				)}
+				{error && (
+					<Message type='error' text='Нет пользователя с такими данными !' />
+				)}
+				{success && (
+					<Message type='success' text='Вы успешно зарегистрированы!' />
+				)}
+
 				<Button variant='primary' type='submit'>
 					{pathname === RoutePath.Register ? 'Зарегистрироваться' : 'Войти'}
 				</Button>
@@ -195,10 +264,16 @@ export const LoginForm: React.FC<LoginFormProps> = props => {
 						Есть аккаунт ? <Link to={RoutePath.Login}>Войти</Link>
 					</div>
 				) : (
-					<div className={cls.social__account}>
-						Нет аккаунта ?{' '}
-						<Link to={RoutePath.Register}>Зарегистрироваться</Link>
-					</div>
+					<>
+						{userType !== 'patient' ? (
+							''
+						) : (
+							<div className={cls.social__account}>
+								Нет аккаунта ?{' '}
+								<Link to={RoutePath.Register}>Зарегистрироваться</Link>
+							</div>
+						)}
+					</>
 				)}
 			</div>
 		</div>

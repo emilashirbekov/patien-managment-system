@@ -10,9 +10,10 @@ import {
 	UseFormRegister,
 } from 'react-hook-form'
 import { PatientsTypes } from '@/features/Patients/model/types/patients'
+import { useCreatePatientMutation } from '@/features/Patients/model/serivces/patientsAPI'
+import { Message } from '@/widgets/Dashboard/Message/ui/Message'
 
 interface DoctorPatientProps {
-	createPatient: any
 	handleSubmit: UseFormHandleSubmit<PatientsTypes, FieldValues>
 	register: UseFormRegister<FieldValues>
 	errors: FieldErrors<PatientsTypes>
@@ -22,7 +23,8 @@ interface DoctorPatientProps {
 }
 
 export const AddPatientForm: FC<DoctorPatientProps> = props => {
-	const { register, handleSubmit, createPatient, watch, errors, reset } = props
+	const { register, handleSubmit, watch, errors, reset } = props
+	const [createPatient, { isSuccess, error }] = useCreatePatientMutation()
 
 	const onSubmit: SubmitHandler<any> = formValue => {
 		const user_data = {
@@ -38,6 +40,7 @@ export const AddPatientForm: FC<DoctorPatientProps> = props => {
 			mobile: formValue.mobile,
 		}
 		const registrationData = { user_data, profile_data }
+		//@ts-ignore
 		createPatient(registrationData)
 		reset()
 	}
@@ -190,6 +193,10 @@ export const AddPatientForm: FC<DoctorPatientProps> = props => {
 						)}
 					</span>
 				</div>
+				{isSuccess && (
+					<Message type='success' text='Пациент успешно добавлен !' />
+				)}
+				{error && <Message type='error' text='Ошибка !' />}
 				<Button variant='primary' size='lg'>
 					Добавить
 				</Button>

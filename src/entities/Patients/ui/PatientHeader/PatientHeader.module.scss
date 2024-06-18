@@ -1,0 +1,19 @@
+.content__header {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+
+.plus {
+	background: var(--aqua-dark);
+	transition: all 0.3s ease;
+	padding: 2px 15px;
+	color: var(--aqua-blue);
+	font-size: 24px;
+	border-radius: 8px;
+
+	&:hover {
+		background: var(--aqua-blue);
+		color: var(--light);
+	}
+}

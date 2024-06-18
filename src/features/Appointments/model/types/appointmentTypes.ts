@@ -1,9 +1,8 @@
-export interface Appointment {
+export interface AppointmentsType {
 	id?: string
-	// patient_name: string
-	// phoneNumber: string
-	date: string
-	time: string
-	// disease: string
+	username: string
+	mobile: string
+	appointment_date: string
+	appointment_time: string
 	doctor: string
 }

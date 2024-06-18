@@ -2,16 +2,17 @@ import { Input } from '@/shared/ui/Input/Input'
 import cls from './Appointment.module.scss'
 import { Button } from '@/shared/ui/Button/Button'
 import { useForm } from 'react-hook-form'
-import {
-	useCreateAppointmentMutation,
-	useGetAppointmentsQuery,
-} from '@/features/Appointments/model/services/AppointmentsAPI'
-import { useGetDoctorsQuery } from '@/features/DoctorsAction/model/services/doctorsAPI'
+import { useCreateAppointmentMutation } from '@/features/Appointments/model/services/AppointmentsAPI'
+import { useGetDoctorsQuery } from '@/features/Doctors/model/services/doctorsAPI'
 import PageLoader from '@/shared/ui/PageLoader/PageLoader'
-import { Doctors } from '@/features/DoctorsAction/model/types/doctors.types'
 import appointment from '@/shared/assets/appointments.png'
+import { Message } from '@/widgets/Dashboard/Message/ui/Message'
+import Doctors from '@/features/Doctors/model/types/doctors.types'
+import { FormEvent, useState } from 'react'
 
 export const Appointment = () => {
+	const [active, setActive] = useState('')
+	const [time, setTime] = useState('')
 	const {
 		register,
 		reset,
@@ -20,22 +21,30 @@ export const Appointment = () => {
 	} = useForm({
 		mode: 'onBlur',
 		defaultValues: {
-			date: '',
-			time: '',
-			doctor: 'Эмиль',
+			username: '',
+			mobile: '',
+			appointment_date: '',
+			appointment_time: '',
+			doctor: '',
 		},
 	})
-	const [createAppointment] = useCreateAppointmentMutation()
-	// const { data: appointmentData, isLoading: appointmentLoading } =
-	// 	useGetAppointmentsQuery()
+	const [createAppointment, { isSuccess, error }] =
+		useCreateAppointmentMutation()
 	const { data, isLoading } = useGetDoctorsQuery()
-	if (isLoading) return <PageLoader />
+	if (isLoading) return <PageLoader clsx={cls.loader} />
 
 	const onSubmit = (data: any) => {
-		createAppointment(data)
+		const appointment = {
+			username: data.username,
+			appointment_date: data.appointment_date,
+			appointment_time: time,
+			doctor: data.doctor,
+			mobile: data.mobile,
+		}
+		createAppointment(appointment)
+
 		reset()
 	}
-	// console.log(appointmentData)
 
 	//@ts-ignore
 	const doctors = data.doctors.map(doctorData => ({
@@ -47,6 +56,47 @@ export const Appointment = () => {
 		username: doctorData.username,
 	}))
 
+	const availableTime = [
+		'8:00',
+		'8:20',
+		'8:40',
+		'9:00',
+		'9:20',
+		'9:40',
+		'10:00',
+		'10:20',
+		'10:40',
+		'11:00',
+		'11:20',
+		'11:40',
+		'13:00',
+		'13:20',
+		'13:40',
+		'14:00',
+		'14:20',
+		'14:40',
+		'15:00',
+		'15:20',
+		'15:40',
+		'16:00',
+		'16:20',
+		'16:40',
+		'17:00',
+	]
+
+	const handleTime = (e: any) => {
+		const selectedTime = e.target.getAttribute('data-time')
+		setTime(selectedTime)
+		setActive(selectedTime)
+	}
+
+	const getTodayDate = () => {
+		const today = new Date()
+		const year = today.getFullYear()
+		const month = String(today.getMonth() + 1).padStart(2, '0')
+		const day = String(today.getDate()).padStart(2, '0')
+		return `${year}-${month}-${day}`
+	}
 	return (
 		<section className={cls.appointment}>
 			<form
@@ -56,36 +106,81 @@ export const Appointment = () => {
 				className={cls.appointment__form}
 			>
 				<Input
+					placeholder='Имя'
+					{...register('username', {
+						required: 'Введите имя пользователя',
+						maxLength: {
+							value: 15,
+							message: 'Имя не может быть больше 15 символов',
+						},
+					})}
+					type='text'
+					name='username'
+				/>
+				{errors.username && (
+					<p className={cls.error}>{errors.username.message}</p>
+				)}
+				<Input
+					type='text'
+					placeholder='Номер телефона'
+					{...register('mobile', {
+						required: 'Введите номер телефона',
+						maxLength: {
+							value: 15,
+							message: 'Номер телефона не может быть больше 15 символов',
+						},
+					})}
+					name='mobile'
+				/>
+				{errors.mobile && <p className={cls.error}>{errors.mobile.message}</p>}
+				<Input
 					type='date'
 					name='date'
-					// label='Дата'
+					min={getTodayDate()}
 					placeholder='Выберите дату'
-					{...register('date', {
+					{...register('appointment_date', {
 						required: 'Выберите дату',
 					})}
 				/>
-				{errors.date && <p className={cls.error}>{errors.date.message}</p>}
-				<Input
+				{errors.appointment_date && (
+					<p className={cls.error}>{errors.appointment_date.message}</p>
+				)}
+				{/* <Input
 					type='time'
 					name='time'
-					// label='Время'
 					placeholder='Выберите время'
-					{...register('time', {
+					{...register('appointment_time', {
 						required: 'Выберите время',
 					})}
 				/>
-				{errors.time && <p className={cls.error}>{errors.time.message}</p>}
-
-				<div className={cls.select}>
-					<select {...register('doctor', { required: 'Выберите врача' })}>
-						{doctors.map((doctor: Doctors) => (
-							<option key={doctor.first_name} value={doctor.first_name}>
-								{doctor.first_name} - {doctor.department}
-							</option>
-						))}
-					</select>
-				</div>
-
+				{errors.appointment_time && (
+					<p className={cls.error}>{errors.appointment_time.message}</p>
+				)} */}
+				<div className={cls.choose__data}>Выберите время</div>
+				<ul className={cls.time__container}>
+					{availableTime.map(time => (
+						<li
+							onClick={handleTime}
+							className={active === time ? cls.active : cls.time}
+							key={time}
+							data-time={time}
+						>
+							{time}
+						</li>
+					))}
+				</ul>
+				<select
+					className={cls.select}
+					{...register('doctor', { required: 'Выберите врача' })}
+				>
+					{doctors.map((doctor: Doctors) => (
+						<option key={doctor.first_name} value={doctor.first_name}>
+							{doctor.first_name} - {doctor.department}
+						</option>
+					))}
+				</select>
+				{isSuccess && <Message type='success' text='Запись прошла успешно !' />}
+				{error && <Message type='error' text='Ошибка !' />}
 				<Button type='submit' variant='primary' size='lg'>
 					Записаться
 				</Button>

@@ -1,0 +1,62 @@
+.choose {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+	justify-items: center;
+	margin: 64px 0;
+
+	@media screen and (max-width: 768px) {
+		grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+	}
+
+	& img {
+		margin-bottom: 30px;
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	&__left {
+		& h4 {
+			font-size: clamp(1.5rem, 1.214rem + 1.43vw, 2.5rem);
+			font-weight: 700;
+			letter-spacing: 0.7px;
+		}
+
+		& p {
+			color: #4d4b4b;
+			font-size: 18px;
+			letter-spacing: 0.8px;
+			line-height: 1.8rem;
+			margin: 32px 0;
+		}
+
+		& ul li {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-size: clamp(1rem, 0.893rem + 0.54vw, 1.375rem);
+			font-weight: 700;
+			letter-spacing: 0.7px;
+			margin: 28px 0;
+		}
+	}
+
+	& a {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+		width: min-content;
+		border: 1px solid #0000;
+		border-radius: 28px;
+		color: #fff;
+		cursor: pointer;
+		letter-spacing: 0.8px;
+		outline: #0000;
+		padding: 14px 20px;
+		transition: all 0.4s ease;
+		background-color: var(--primary);
+		&:hover {
+			background-color: var(--light-primary);
+		}
+	}
+}

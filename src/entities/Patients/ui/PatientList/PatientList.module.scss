@@ -1,0 +1,26 @@
+.table {
+	width: 95%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	background: white;
+
+	& th,
+	td {
+		border: 1px solid white;
+		padding: 20px;
+		text-align: left;
+	}
+
+	& th {
+		background-color: white;
+	}
+
+	& tr:nth-child(even) {
+		background-color: white;
+	}
+}
+
+.empty {
+	text-align: center;
+	margin-top: 20%;
+}

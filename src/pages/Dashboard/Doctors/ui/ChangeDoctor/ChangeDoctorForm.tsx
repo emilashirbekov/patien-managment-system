@@ -1,32 +1,27 @@
-import { Doctors } from '@/features/DoctorsAction/model/types/doctors.types'
 import cls from '../AddDoctor/AddDoctor.module.scss'
 import { Button } from '@/shared/ui/Button/Button'
 import { Input } from '@/shared/ui/Input/Input'
 import { FC } from 'react'
-import {
-	FieldErrors,
-	FieldValues,
-	SubmitHandler,
-	UseFormHandleSubmit,
-	UseFormRegister,
-} from 'react-hook-form'
+import { SubmitHandler } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
-import { useUpdateDoctorMutation } from '@/features/DoctorsAction/model/services/doctorsAPI'
+import { useUpdateDoctorMutation } from '@/features/Doctors'
+import DepartmentsType from '@/features/Departments/model/types/departments'
+import Doctors from '@/features/Doctors/model/types/doctors.types'
 
 interface DoctorFormProps {
 	createDoctor: any
-	handleSubmit: UseFormHandleSubmit<Doctors, FieldValues>
-	register: UseFormRegister<FieldValues>
-	errors: FieldErrors<Doctors>
+	handleSubmit: any
+	register: any
+	errors: any
 	reset: any
 	watch: any
-	departments: any
+	departments: DepartmentsType[]
 }
 
 export const ChangeDoctorForm: FC<DoctorFormProps> = props => {
 	const { register, handleSubmit, errors, departments, reset } = props
-	const [updateDoctor] = useUpdateDoctorMutation()
 	const { id } = useParams()
+	const [updateDoctor] = useUpdateDoctorMutation()
 	const onSubmit: SubmitHandler<Doctors> = (id, formValue: any) => {
 		const user_data = {
 			username: formValue.username,
@@ -34,15 +29,14 @@ export const ChangeDoctorForm: FC<DoctorFormProps> = props => {
 			last_name: formValue.last_name,
 		}
 		const profile_data = {
-			department: 'DL',
+			department: formValue.department,
 			address: formValue.address,
 			mobile: formValue.mobile,
 		}
 		const registrationData = { user_data, profile_data }
-		console.log(id, { doctors: registrationData })
 
 		//@ts-ignore
-		updateDoctor(id, registrationData)
+		updateDoctor({ id, doctors: registrationData })
 		reset()
 	}
 
@@ -144,7 +138,7 @@ export const ChangeDoctorForm: FC<DoctorFormProps> = props => {
 						)}
 					</span>
 				</div>
-				{/* <div style={{ marginBottom: '20px' }} className={cls.col_1}>
+				<div style={{ marginBottom: '20px' }} className={cls.col_1}>
 					<span className={cls.select}>
 						<label className={cls.label}>
 							Выберите отдел
@@ -158,7 +152,7 @@ export const ChangeDoctorForm: FC<DoctorFormProps> = props => {
 							))}
 						</select>
 					</span>
-				</div> */}
+				</div>
 				<Button variant='primary' size='lg'>
 					Обновить
 				</Button>

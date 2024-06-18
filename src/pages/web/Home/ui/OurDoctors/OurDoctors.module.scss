@@ -1,0 +1,65 @@
+.doctors {
+	& h5 {
+		text-align: center;
+		font-size: clamp(1.5rem, 1.214rem + 1.43vw, 2.5rem);
+		font-weight: 700;
+		letter-spacing: 0.7px;
+
+		@media screen and (max-width: 425px) {
+			text-align: left;
+		}
+	}
+
+	& p {
+		color: #4d4b4b;
+		font-family: Rubik, sans-serif;
+		font-size: clamp(1rem, 0.929rem + 0.36vw, 1.25rem);
+		letter-spacing: 0.8px;
+		line-height: 1.8rem;
+		margin: 32px auto 32px;
+		text-align: center;
+		@media screen and (max-width: 425px) {
+			text-align: left;
+		}
+	}
+
+	& ul {
+		align-items: center;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 32px;
+		justify-content: center;
+		width: 100%;
+
+		& li {
+			gap: 32px;
+			height: 400px;
+			text-align: left;
+			width: 332px;
+
+			& img {
+				background-color: #dde5f8;
+				background-position: 50%;
+				border-radius: 20px;
+				height: 275px;
+				padding: 16px 32px 0;
+				width: 100%;
+			}
+
+			& h6 {
+				font-size: 22px;
+				font-weight: 700;
+				letter-spacing: 0.7px;
+				margin: 12px 0 0;
+			}
+
+			& span {
+				font-size: 18px;
+				letter-spacing: 0.7px;
+				color: #494949;
+				font-family: Poppins, sans-serif;
+				margin: 6px 0 8px;
+			}
+		}
+	}
+}

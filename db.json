@@ -1,6 +1,9 @@
 {
-  "appointments": [
-    {}
-  ],
-  "departments": []
+  "appointments": [],
+  "departments": [
+    {
+      "id": "3dc1",
+      "department": "CL"
+    }
+  ]
 }

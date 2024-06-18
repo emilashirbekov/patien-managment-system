@@ -1,7 +1,8 @@
 .nav {
+	position: relative;
 	max-width: 1200px;
 	margin: auto;
-	padding: 2rem 1rem;
+	padding-block: 2rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -42,9 +43,10 @@
 
 .link {
 	width: max-content;
+	display: block;
 	border: 1px solid #0000;
 	border-radius: 28px;
-	color: #fff;
+	color: #fff !important;
 	cursor: pointer;
 	letter-spacing: 0.8px;
 	outline: #0000;
@@ -54,4 +56,51 @@
 	&:hover {
 		background-color: var(--light-primary);
 	}
+}
+
+.icon {
+	color: #2e37a4;
+	fill: #2e37a4;
+}
+
+.none {
+	display: none !important;
+}
+
+.mobile__menu {
+	height: 100svh;
+	width: --webkit-full-width;
+	background: #fff;
+	z-index: 999;
+	position: absolute;
+	top: -32px;
+	left: -4%;
+	right: -4%;
+	transition: all 0.7s ease;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+
+	& li a {
+		color: #000;
+		font-size: 20px;
+		text-decoration: underline;
+	}
+}
+
+.mobile__menu__closed {
+	@extend .mobile__menu;
+	left: 110%;
+	& li {
+		display: none;
+	}
+}
+
+.burger__close {
+	position: absolute;
+	top: 66px;
+	right: 35px;
 }

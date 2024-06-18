@@ -1,9 +1,9 @@
 .signIn__form {
-	width: auto;
+	width: -webkit-fill-available;
 	background: #fff;
 	border-radius: 30px;
 	padding: 50px;
-	height: fit-content;
+	height: auto;
 	@media screen and (max-width: 425px) {
 		padding: 20px;
 	}
@@ -11,7 +11,7 @@
 	& h2 {
 		font-size: 26px;
 		font-weight: 600;
-		margin-bottom: 40px;
+		margin: 40px 0;
 		@media screen and (max-width: 500px) {
 			margin-bottom: 20px;
 		}
@@ -86,4 +86,23 @@
 	color: var(--danger);
 	font-size: 14px;
 	margin-bottom: 16px;
+}
+input[type='radio'] {
+	display: none;
+}
+
+.custom__radio {
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	padding: 5px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin: 5px;
+	transition: background-color 0.3s ease;
+}
+.checked {
+	font-weight: 700;
+	border-color: #000;
 }

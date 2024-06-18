@@ -1,1 +1,1 @@
-export { Main } from './ui/Home'
+export { AdminPageAsync as AdminMain } from './ui/AdminMain.async'

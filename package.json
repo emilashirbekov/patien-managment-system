@@ -79,6 +79,6 @@
 		"react-hook-form": "^7.49.3",
 		"react-redux": "^9.0.4",
 		"react-router-dom": "^6.16.0",
-		"tailwind-merge": "^2.2.2"
+		"tailwind-merge": "^2.3.0"
 	}
 }

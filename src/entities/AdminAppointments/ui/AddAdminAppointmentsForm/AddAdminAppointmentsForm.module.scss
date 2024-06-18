@@ -1,0 +1,47 @@
+.col_1 {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+	gap: 20px;
+	margin-bottom: 20px;
+
+	& span {
+		position: relative;
+	}
+}
+
+.error {
+	color: var(--danger);
+	font-size: 12px;
+	margin-bottom: 16px;
+}
+
+.success {
+	color: var(--success);
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 16px;
+}
+
+.label {
+	background: #fff;
+	color: #333448;
+	font-size: 12px;
+	font-weight: 500;
+	left: 10px;
+	margin-bottom: 0;
+	padding: 0 5px;
+	position: absolute;
+	top: -10px;
+	z-index: 1;
+}
+
+.select {
+	position: relative;
+
+	& select {
+		width: -webkit-fill-available;
+		padding: 5px 15px;
+		border-radius: 10px;
+		border: 2px solid rgba(46, 55, 164, 0.1019607843);
+	}
+}

@@ -1,20 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { DepartmentsType } from '../types/departments'
 import { BASE_URL, URL } from '@/shared/const/url'
 import Cookies from 'js-cookie'
+import DepartmentsType from '../types/departments'
 
 export const departmentsAPI = createApi({
 	reducerPath: 'departmentsAPI',
 	baseQuery: fetchBaseQuery({
 		baseUrl: `${BASE_URL}/departments`,
-		// prepareHeaders: headers => {
-		// 	const token = Cookies.get('token')
-		// 	if (token) {
-		// 		headers.set('Authorization', `Bearer ${token}`)
-		// 	}
-		// 	headers.set('Content-Type', 'application/json')
-		// 	return headers
-		// },
 	}),
 	tagTypes: ['DepartmentsType'],
 
@@ -50,12 +42,10 @@ export const departmentsAPI = createApi({
 			invalidatesTags: ['DepartmentsType'],
 		}),
 		updateDepartment: builder.mutation({
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			//@ts-ignore
-			query: ({ id, updatedDepartment }) => ({
+			query: ({ id, department }) => ({
 				url: `/${id}`,
 				method: 'PUT',
-				body: updatedDepartment,
+				body: department,
 			}),
 			invalidatesTags: ['DepartmentsType'],
 		}),

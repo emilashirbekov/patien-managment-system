@@ -1,9 +1,8 @@
 import cls from './AddDoctor.module.scss'
-import { useCreateDoctorMutation } from '@/features/DoctorsAction/model/services/doctorsAPI'
-import { AddDoctorForm } from './AddDoctorForm'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import { BASE_URL } from '@/shared/const/url'
+import { AddDoctorForm } from '@/features/Doctors'
 
 const AddDoctor = () => {
 	const [departments, setDepartments] = useState([])
@@ -32,7 +31,6 @@ const AddDoctor = () => {
 			mobile: '',
 		},
 	})
-	const [createDoctor] = useCreateDoctorMutation()
 
 	return (
 		<section className={cls.container}>
@@ -43,7 +41,6 @@ const AddDoctor = () => {
 				departments={departments}
 				handleSubmit={handleSubmit}
 				reset={reset}
-				createDoctor={createDoctor}
 				errors={errors}
 			/>
 		</section>

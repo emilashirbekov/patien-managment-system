@@ -1,0 +1,110 @@
+.home {
+	transition: all 0.6s ease;
+	&__container {
+		margin-left: 300px;
+		margin-top: 100px;
+
+		@media screen and (max-width: 1024px) {
+			margin-left: 20px;
+		}
+	}
+	&__blur {
+		filter: blur(3px);
+	}
+	&__card {
+		display: flex;
+		padding: 50px 0 50px 35px;
+		-webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+		-moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+		box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+		width: 95%;
+		border-radius: 16px;
+		margin-bottom: 30px;
+		&__img {
+			position: absolute;
+			top: 22px;
+			left: 70%;
+		}
+		&__text {
+			& h2 {
+				font-size: 28px;
+				font-weight: 600;
+				margin-bottom: 8px;
+
+				& span {
+					color: #2e37a4;
+				}
+			}
+			& p {
+				color: #33344880;
+				font-size: 15px;
+				font-weight: 500;
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&__stat__info {
+		width: 95%;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+		justify-items: center;
+
+		& li {
+			width: 95%;
+			backdrop-filter: blur(2px);
+			border-radius: 12px;
+			margin-bottom: 30px;
+			padding: 20px;
+			position: relative;
+			-webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+			-moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+			box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+			& div {
+				margin-bottom: 10px;
+			}
+
+			& h5 {
+				font-weight: 600;
+				margin-bottom: 15px;
+				font-size: 16px;
+			}
+
+			& p {
+				color: #2e37a4;
+				font-size: 32px;
+				font-weight: 600;
+				margin-bottom: 15px;
+			}
+
+			& span {
+				color: #33344880;
+				font-size: 14px;
+				font-weight: 500;
+				margin-bottom: 0;
+			}
+		}
+
+		&__icon {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: #2e37a40d;
+			border: 2px solid #2e37a41a;
+			border-radius: 12px;
+			height: 50px;
+			width: 50px;
+		}
+	}
+}
+
+.loader {
+	margin-left: 50%;
+	margin-top: 20%;
+
+	@media screen and (max-width: 1024px) {
+		width: -webkit-fill-available;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+}

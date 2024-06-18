@@ -51,10 +51,10 @@ export const patientsAPI = createApi({
 			invalidatesTags: ['Patients'],
 		}),
 		updatePatient: builder.mutation({
-			query: ({ id, updatedPatient }) => ({
+			query: ({ id, patients }) => ({
 				url: `admin/patient/${id}/`,
 				method: 'PUT',
-				body: updatedPatient,
+				body: patients,
 			}),
 			invalidatesTags: ['Patients'],
 		}),

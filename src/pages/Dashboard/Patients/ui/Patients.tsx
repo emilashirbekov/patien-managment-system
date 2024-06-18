@@ -1,20 +1,13 @@
 import cls from './Patients.module.scss'
-import { Link } from 'react-router-dom'
-import { RoutePath } from '@/shared/config/routeConfig'
 import PageLoader from '@/shared/ui/PageLoader/PageLoader'
-import DeleteIcon from '@mui/icons-material/Delete'
-import CreateIcon from '@mui/icons-material/Create'
-import { Search } from '@/widgets/Dashboard/Search/Search'
-import {
-	useDeletePatientMutation,
-	useGetPatientsQuery,
-} from '@/features/Patients/model/serivces/patientsAPI'
+import { useGetPatientsQuery } from '@/features/Patients/model/serivces/patientsAPI'
 import { PatientsTypes } from '@/features/Patients/model/types/patients'
-import AirlineSeatFlatIcon from '@mui/icons-material/AirlineSeatFlat'
+import { useState } from 'react'
+import { PatientHeader, PatientList } from '@/entities/Patients'
 
 const Patients = () => {
 	const { data, isLoading, isError } = useGetPatientsQuery()
-	const [deletePatient] = useDeletePatientMutation()
+	const [searchQuery, setSearchQuery] = useState('')
 	if (isLoading) return <PageLoader clsx={cls.loader} />
 	if (isError) return <h1>Ошибка</h1>
 	//@ts-ignore
@@ -27,61 +20,21 @@ const Patients = () => {
 		username: patientsData.username,
 	}))
 
+	//@ts-ignore
+	const filteredPatients = patients.filter(patient =>
+		`${patient.first_name} ${patient.last_name} ${patient.username}`
+			.toLowerCase()
+			.includes(searchQuery.toLowerCase())
+	)
+
 	return (
 		<section className={cls.patients}>
 			<div className={cls.content}>
-				<div className={cls.content__header}>
-					<p>Список пациентов</p>
-					<p>
-						<Search />
-					</p>
-					<Link to={RoutePath.add_patient} className={cls.plus}>
-						+
-					</Link>
-				</div>
-				{patients.length > 0 ? (
-					patients.map(patient => (
-						<table className={cls.table} key={patient.id}>
-							<thead>
-								<tr>
-									<th>Пользователь</th>
-									<th>Имя</th>
-									<th>Фамилия</th>
-									<th>Возраст</th>
-									<th>Адрес</th>
-									<th>Мобильный телефон</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>{patient.username}</td>
-									<td>{patient.first_name}</td>
-									<td>{patient.last_name}</td>
-									<td>{patient.age}</td>
-									<td>{patient.address}</td>
-									<td>{patient.mobile}</td>
-									<td>{patient.password}</td>
-									<td
-										//@ts-ignore
-										onClick={() => deletePatient(patient.id)}
-									>
-										<DeleteIcon style={{ color: 'red' }} />
-									</td>
-									<td>
-										<Link to={`${RoutePath.change_patient}/${patient.id}`}>
-											<CreateIcon style={{ color: 'blue' }} />
-										</Link>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					))
-				) : (
-					<h2 className={cls.empty}>
-						Нет пациентов
-						<AirlineSeatFlatIcon fontSize='large' color='primary' />
-					</h2>
-				)}
+				<PatientHeader
+					searchQuery={searchQuery}
+					setSearchQuery={setSearchQuery}
+				/>
+				<PatientList filteredPatients={filteredPatients} />
 			</div>
 		</section>
 	)

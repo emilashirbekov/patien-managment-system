@@ -1,10 +1,11 @@
-.message {
+.success {
 	color: var(--success);
 	font-size: 18px;
 	font-weight: 500;
+	margin-bottom: 16px;
 }
 
 .error {
-	@extend .message;
+	@extend .success;
 	color: var(--danger);
 }

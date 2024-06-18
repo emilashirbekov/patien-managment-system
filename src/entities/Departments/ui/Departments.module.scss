@@ -1,0 +1,43 @@
+.table {
+	width: 95%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	background: white;
+
+	& th,
+	td {
+		border: 1px solid white;
+		padding: 20px;
+		text-align: left;
+	}
+
+	& th {
+		background-color: white;
+	}
+
+	& tr:nth-child(even) {
+		background-color: white;
+	}
+}
+
+.loader {
+	margin-left: 50%;
+	margin-top: 20%;
+
+	@media screen and (max-width: 1024px) {
+		width: -webkit-fill-available;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+}
+
+.error {
+	color: var(--danger);
+	font-size: 12px;
+	margin-bottom: 16px;
+}
+
+.empty {
+	text-align: center;
+	margin-top: 20%;
+}
